@@ -1,0 +1,63 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class HelloWorld {
+    public static void main(String[] args) {
+
+        // O(n) and O(n) space and time.
+        //1
+        //using new array and travels input array backward and insert into new array. 
+        
+        int arr[]=new int[]{1,2,3,4,5};
+        int res[]=new int[arr.length];
+    
+        int j=arr.length-1;
+        for(int i=0;i<arr.length;i++){
+            res[i]=arr[j];
+            j--;
+        }
+        System.out.println("reverse is method 1 :\n");
+        for(int i=0;i<arr.length;i++){
+            System.out.print(res[i]);
+        }
+        
+        //2 loop called (n/2)
+        // O(1) and O(n) space and time.
+        // using swaping swap first and last element of array and check the index condtion.  
+        int i=0;
+        j=arr.length-1;
+        
+        while(i<j){
+            int temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+            j--;
+            i++;
+        }
+        System.out.println("reverse is method 2 :\n");
+        for( i=0;i<arr.length;i++){
+            System.out.print(arr[i]);
+        }
+        
+        //3
+        // O(n) and O(n) space and time.    
+        // we are calling recrusive fucntion which uses stack. so, space complexity is O(n)
+        // use swap using recrusive method 
+        
+        reverse(arr,0,arr.length-1);
+        System.out.println("reverse is method 3 :\n");
+        for( i=0;i<arr.length;i++){
+            System.out.print(arr[i]);
+        }
+    }
+    
+    public static void reverse(int arr[],int i,int j) {
+        if(i>j){
+            return;
+        }
+        int temp = arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+        reverse(arr,i+1,j-1);
+    }
+}
