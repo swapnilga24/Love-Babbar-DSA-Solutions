@@ -1,0 +1,4 @@
+
+arr = list();
+arr = [1,2,3,4,5];
+print("Reverse is ",arr[::-1]);
