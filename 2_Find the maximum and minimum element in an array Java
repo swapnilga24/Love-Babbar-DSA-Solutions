@@ -1,0 +1,46 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.Arrays;
+
+class HelloWorld {
+    public static void main(String[] args) {
+        int arr[] = new int[]{3,2,1,4,5,8,6,7,9,10};
+        
+        //Method 1 : using only one loop. find min and max.
+        //assign first element of array to two variables min and max.
+        // comapre them with other elements.
+        // if it is greater than other element then store that element to that variable. and it is max.
+        // if it is smaller than other element then store that element to that variable. and it is min.        
+        // O(n)  time
+        // O(1)  space.
+        
+        int max = arr[0];
+        int min = arr[0];
+        for(int i=1;i<arr.length;i++){
+            if(arr[i]>max){
+                max=arr[i];
+            }
+            if(arr[i]<min){
+                min=arr[i];
+            }
+        }
+        System.out.println("First method ");
+        System.out.println("\nMax element:"+max);
+        System.out.println("\nMin element:"+min);
+        
+        // O(n logn)  time
+        // O(1)  space.
+        //Method 2 : using sort. and then 0th and last index is the min and max.
+        // java arrays sort time completixity is O(n log n) cobine of two sort internally. 
+        Arrays.sort(arr);
+        System.out.println("\nSecond method ");
+        System.out.println("\nMax element:"+arr[0]);
+        System.out.println("\nMin element:"+arr[arr.length-1]);
+        
+        
+        // method 3 is best :
+        //https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
+        //less comparison  
+        // in one loop check two element.
+    }
+}
