@@ -1,0 +1,55 @@
+class HelloWorld {
+    public static void main(String[] args) {
+        int a[] = new int[]{ 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1 };
+        
+        //Dutch national flag problem.
+        // based on the flag of dutch this name is given.
+        // red ,white,blue.
+        // we divide the arr into 4 region.
+     
+        // 1: a[1..Lo-1] zeroes (red)
+        // 2: a[Lo..Mid-1] ones (white)
+        // 3: a[Mid..Hi] unknown
+        // 4: a[Hi+1..N] twos (blue)
+        // based on this region we sort the array. with one loop.
+        
+        // first we define low and mid to 0 index and high to last index.
+        // wh iterate using mide<=high
+        // case 1 check a[mid].
+        // if it is 1 then mid++;
+        // if it is 2 then swap high and mid and do high-- 
+        // if it is 0 then swap low and mid and do low++ and mid++
+        // and array will be sort.
+        
+        // time O(n)
+        // space O(1)
+        
+        int low=0;
+        int mid=0;
+        int high = a.length-1;
+        
+        while(mid<=high){
+            if(a[mid]==1){
+                mid++;
+            }else{
+                if(a[mid]==2){
+                    int temp = a[mid];
+                    a[mid]=a[high];
+                    a[high]=temp;
+                    high--;
+                }else{
+                    if(a[mid]==0){
+                        int temp=a[mid];
+                        a[mid]=a[low];
+                        a[low]=temp;
+                        low++;
+                        mid++;
+                    }
+                }
+            }
+        }
+        for(int i=0;i<a.length;i++){
+            System.out.print(a[i]+",");
+        }
+    }
+}
