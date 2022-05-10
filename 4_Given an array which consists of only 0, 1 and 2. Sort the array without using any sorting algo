@@ -1,0 +1,93 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class HelloWorld {
+	public static void main(String[] args) {
+	    method1();
+        method2();
+	}
+	
+	public static void method1(){
+	    int a[] = new int[]{0,2,1,0,2,2,1,0};
+	    
+	    // using arraylist we can add element to array.
+	    // at end , at start, and at the perticular index.
+	    
+	    // time O (n)
+        // space O (1)
+        // Only one traversal of the array is needed.
+        // 
+        // create list of intger as a arraylist.
+        // iterate all the element of array.
+        // use one pointer index. which will be used to point 1.
+        // check 2 if it is present then add to arraylist. it will be added at the end.
+        // check 1, if present add that to index.
+        // check 0 , if present add that to 0th index.
+        
+        // so, that o will place at start and 1 will place at index and 2 at last.
+        
+        List<Integer> out = new ArrayList<>();
+        int index=0;
+        for(int item : a){
+            if(item == 2){
+                out.add(item);
+            }else{
+                if(item == 1){
+                    out.add(index,1);
+                    index++;
+                }else{
+                    if(item == 0){
+                       out.add(0,item);
+                       index++;
+                    }
+                }
+            }
+        }
+        System.out.print("\nMethod 1:\n");
+        for(int item : out){
+            System.out.print(item+",");
+        }
+	}
+	
+	public static void method2()
+    {
+        int a[] = new int[]{0,2,1,0,2,2,1,0};
+        
+        // time O (n)
+        // space O (1)
+        // Only two traversal of the array is needed.
+        // count the 0, 1 and 2.
+        // and based on the count we will update the input array.
+        
+        int n = a.length;
+        int c0=0,c1=0,c2=0;
+        for(int i=0;i<n;i++){
+            if(a[i]==0){
+                c0++;
+            }
+            if(a[i]==1){
+                c1++;
+            }
+            if(a[i]==2){
+                c2++;
+            }
+        }
+        int j=0;
+        while(c0>0){
+            a[j++]=0;
+            c0--;
+        }
+        while(c1>0){
+            a[j++]=1;
+            c1--;
+        }
+        while(c2>0){
+            a[j++]=2;
+            c2--;
+        }
+        System.out.print("\nMethod 2:\n");
+        for(int item : a){
+            System.out.print(item+",");
+        }
+    }
+}
