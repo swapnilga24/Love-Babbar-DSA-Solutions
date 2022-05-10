@@ -1,0 +1,72 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class HelloWorld {
+    public static void main(String[] args) {
+
+        //Logic :
+        // check even and odd length array.
+        // if even then compare first and second element.
+        // and assign to max and min.
+        // if odd then assign max and min to first eleemnt.
+        
+        // then iterate thorugh other array. at a time check two element.
+        // a[i] and a[i+1]
+        // take a pair of two element check the geater one and make two condition.
+        // if greate then check a[i] with max if yes then update only max. same for min.
+        //increate loop by 2.
+
+        int a[] = new int[]{3,21,7,5,9,0,12,24,35,32};
+        //best method. 3
+        //https://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
+        //If n is odd then initialize min and max as first element. 
+        //If n is even then initialize min and max as minimum and maximum of the first two elements respectively. 
+        //For rest of the elements, pick them in pairs and compare their 
+        //maximum and minimum with max and min respectively.
+        int n = a.length;
+        int max;
+        int min;
+        int i=0;
+
+        if((n%2)==0){                           
+            if(a[0]>a[1]){                      //+1  for even check
+                max=a[0];
+                min=a[1];
+            }else{
+                max=a[1];
+                min=a[0];
+            }
+            i=2;
+        }else{                                 
+            max=a[0];
+            min=a[0];
+            i=1;
+        }
+        //if odd
+        // 3 * (n-1)/2
+        
+        //if even
+        // 3 * (n-2)/2 + 1
+        
+        while(i<(n-1)){
+            if(a[i]>a[i+1]){                    //1
+                if(a[i]>max){                   //2
+                    max=a[i];
+                }
+                if(a[i+1]<min){                 //3
+                    min=a[i+1];
+                }
+            }else{
+                if(a[i]<min){                   //2
+                    min=a[i];
+                }
+                if(a[i+1]>max){                 //3
+                    max=a[i+1];               
+                }
+            }
+            i=i+2;
+        }
+        System.out.println("max:"+max);
+        System.out.println("min:"+min);
+    }
+}
