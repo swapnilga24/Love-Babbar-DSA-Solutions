@@ -24,6 +24,11 @@ class HelloWorld {
                 min=arr[i];
             }
         }
+        // compare is:
+        // two condition then multiply by 2.
+        //  2(n-1)
+        
+        
         System.out.println("First method ");
         System.out.println("\nMax element:"+max);
         System.out.println("\nMin element:"+min);
