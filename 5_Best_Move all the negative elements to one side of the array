@@ -1,0 +1,60 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class HelloWorld {
+    public static void main(String[] args) {
+        method1();
+        method2();
+    }
+    public static void method1(){
+        System.out.print("\nMethod 1:\n");
+        // O (N)
+        // O (1)
+        // Dutch National Flag Algorithm
+        // we used two pointers. low and high
+        // if negative just increase low++
+        // if positive swap with high and do high--;
+        
+        int a[] = new int[]{-12, 11, -13, -5, 6, -7, 5, -3, -6};
+        int low=0; 
+        int high=a.length-1; 
+        while(low<=high){
+            if(a[low]<=0){ 
+                low++; 
+            }else{
+                if(a[low]>0) {
+                    int temp=a[low]; 
+                    a[low]=a[high]; 
+                    a[high]=temp; 
+                    high--; 
+                }
+            }
+        }
+        for(int i : a){ 
+            System.out.print(i+","); 
+        }
+    }
+    public static void method2(){
+        System.out.print("\nMethod 2:\n");
+        // O (N)
+        // O (1)
+        // travel to o to n
+        // if it is negative then swap with first index.
+        // and maintain another index. 
+        // 
+
+        int a[] = new int[]{-12, 11, -13, -5, 6, -7, 5, -3, -6};
+        int j=0;
+        for(int i=0;i<a.length;i++){
+            if(a[i]<0){
+                int temp = a[i];
+                a[i]=a[j];
+                a[j]=temp;
+                j++;
+            }
+        }
+        for(int i : a){ 
+            System.out.print(i+","); 
+        } 
+    }
+}
