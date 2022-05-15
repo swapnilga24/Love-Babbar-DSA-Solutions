@@ -1,0 +1,61 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class HelloWorld {
+    public static void main(String[] args) {
+        method1();
+        method2();
+    }
+    
+    public static void method1(){
+        // O(n) Time
+        // O(1) space
+        
+        String S="abba";
+        int low=0;
+        int high=S.length()-1;
+        while(low<=high){
+            if(S.charAt(low)==S.charAt(high)){
+                low++;
+                high--;
+            }else{
+                System.out.println("No");
+                return;
+            }   
+        }
+        System.out.println("yes");
+    }
+    
+    public static void method2(){
+        String S="abba";
+        
+        // O(n) Time
+        // O(n) space
+        
+        
+        int low=0;
+        int high=S.length()-1;
+        int res = function(S,low,high);
+        if(res==1){
+            System.out.println("Yes");
+        }else{
+            System.out.println("No");
+        }
+    }
+    
+    public static int function(String S, int low, int high)
+    {
+        if(low==high){ //for one length element.
+            return 1;
+        }
+        if(S.charAt(low) != S.charAt(high)){
+            return 0;  //for string not equal.
+        }
+        if(low<=high){ //check condition.
+            low++;
+            high--;
+            return function(S,low,high);
+        }
+        return 1;
+    }
+}
