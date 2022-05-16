@@ -1,0 +1,152 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+
+class HelloWorld {
+    public static void main(String[] args) {
+       method1();
+       method2();
+       method3();
+       
+       //other method 
+       /*
+        4: in python rotate the array by one and then check string 1.
+        rotatre using list slice.
+        O(n2)
+       */
+       
+       /*
+        5: we swap last and second last element and decrease the count.
+         O(n2)
+       */
+       
+       /*
+        6: we can check low and high index and fixed the high index and increasse loe one
+        O(n2)
+       */
+    }
+    
+    public static void method1(){
+        String str1 = "AACD";
+        String str2 = "ACDA";
+        // create new string temp with str1 and str1.
+        // AACDAACD
+        // concat take O(m+n)lenght of strings.
+        // now, using indexOf() we can check the str2 substring.
+        // indexof take O(n) time.
+        // index of return -1 if not substring.
+        // so total time is O(n);
+        //and space O(m+n)
+        
+       String temp = str1+str1;
+       // AACDAACD
+       if(temp.indexOf(str2)==-1){
+            System.out.printf("Strings are not rotations of each other");
+       }else{
+            System.out.println("Strings are rotations of each other");
+       }    
+    }
+    
+     public static void method2(){
+        String str1 = "ABCD";
+        String str2 = "BCDA";
+        
+        /*
+            using queue.
+            queue is first in first out.
+            queue is best to rotate the array.
+            so, we need to queue.
+            // A B C D
+            // B C D A
+            now, using loop iterante the str1.length till q1 is equal to q2.
+            store temp = q.peek; B
+            q.remove  B
+            q.add(temp)  C D A B
+            now check this with q1.
+        */
+        // q inseartion/delete O(Log n)
+        //while loop O(n)
+        //so total O(n log n)
+        // space O(n)
+        
+        Queue<Character> q1 = new LinkedList<>();
+        Queue<Character> q2 = new LinkedList<>();
+        
+        for(int i=0;i<str1.length();i++){
+            q1.add(str1.charAt(i));
+        }
+        for(int i=0;i<str1.length();i++){
+            q2.add(str2.charAt(i));
+        }
+        int j=str2.length();
+        boolean flag=false;
+        while(j>0){
+            char temp = q2.peek();
+            q2.remove();
+            q2.add(temp);
+            if(q1.equals(q2)){
+                flag=true;
+            }
+            j--;
+        }
+        if(flag){
+            System.out.println("Strings are rotations of each other");
+        }else{
+            System.out.printf("Strings are not rotations of each other");
+        }
+    } 
+    
+    
+    public static void method3(){
+        String str1 = "ABCD";
+        String str2 = "BCDA";
+        /*
+            worst algorithim.
+            so, here we check the occurance of first char of str1. in str2 string and store that in
+            array. store index.
+            then we iterarate through array
+            and now we iterarte str1 i=0 and str2 index
+            if index is same as length then we reset that.
+            we can use % to direclty get the proper index.
+            last we check the length nad update the flag.
+        */
+        
+        // time two loops : O(n*n)
+        // O(n) array space.
+        
+        char firstChar = str1.charAt(0);
+        int count[] = new int[str1.length()];
+        int j=0;
+        for(int i=0;i<str2.length();i++){
+            if(str2.charAt(i) == firstChar){
+                count[j]=i;               
+                j++;
+            }
+        }
+        boolean flag=false;
+        for(int item : count){
+      
+              int l=0;
+              for(int k=0;k<str1.length();k++) {
+                  if(str1.charAt(k) == str2.charAt(item)){
+                      //s1[i]==s2[(j+1)%n)
+                      l++;
+                      if(item == str1.length()-1){
+                            item=-1;
+                      }
+                      item++;
+                  }
+              }
+              if(l==str1.length()){
+                  flag=true;
+              }
+        }
+        if(flag){
+            System.out.println("Strings are rotations of each other");
+        }else{
+            System.out.printf("Strings are not rotations of each other");
+        }
+        
+    }
+   
+}
