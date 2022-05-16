@@ -1,0 +1,64 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+
+class HelloWorld {
+    public static void main(String[] args) {
+        String str="taat";
+        method1(str);
+        method2(str);
+    }
+    public static void method1(String s){
+        /*
+            here, time : O(n) and space is : O(256)
+            high space Complexity
+            here at i th index we store the count.
+            s.charAt(i) give the char of the string.
+            (char)i give the char from int.
+        */
+        int count[] = new int[256];
+        for(int i=0;i<s.length();i++){
+            count[s.charAt(i)]++;
+        }
+        for(int i=0;i<256;i++){
+            if(count[i]>=2){
+                System.out.println("char:"+(char)i+" , count :"+count[i]); 
+            }
+        }
+    }
+    public static void method2(String s){
+        //using maps
+        /*
+            using java hashmap space Complexity reduces.
+            time : O(N logN) : N is length of string. and Log N is inseration in hash map java
+            space : O (K) : max size of string.
+            // best.
+            create hashMap.
+            check key is present. if not then add count 1 and add.
+            if prseent. then increase the count.
+            put is used to insert.
+            containsKey check the key.
+            check iteration logic.
+        */
+        HashMap<Character,Integer> count = new HashMap<>();
+        
+        for(int i=0;i<s.length();i++){
+            if(!count.containsKey(s.charAt(i))){
+                count.put(s.charAt(i),1);
+            }else{
+                count.put(s.charAt(i),count.get(s.charAt(i))+1);
+            }
+        }
+        
+        for(Map.Entry mapElement : count.entrySet()){
+            char key = (char)mapElement.getKey();
+            int value = (int)mapElement.getValue();
+            if(value>=2){
+                System.out.println("key : "+key);
+                System.out.println("value : "+value);
+            }
+        }
+        
+        System.out.println("method2 : "+count);
+    }
+}
