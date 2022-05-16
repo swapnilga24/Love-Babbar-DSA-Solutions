@@ -1,0 +1,79 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+
+class HelloWorld {
+    public static String convertToCharArray(String str){
+        char [] charArray = str.toCharArray();
+        Arrays.sort(charArray);
+        str = String.valueOf(charArray);
+        return str;
+    }
+    
+    public static void main(String[] args) {
+        
+        //O(n) string to chararray.
+        // O(n Log N) sort in java
+        //shuffle O(n)
+        
+        //total is O(n Log N) 
+        // space O(1)
+        
+        /*
+        here, we convert string into char Array and then sort that and again convert back to sting.
+        char [] charArray = str.toCharArray();
+        Arrays.sort(charArray);
+        str = String.valueOf(charArray);
+        
+        after that we iterate through each element of result array.
+        we check 
+        1: length of result element equal to length of first and second.
+        2: then we sort the element all three.
+        3: then we iternate though result array. and and check with first and second. 
+        if not equal return false; else true.
+        */
+        
+        String first = "XY";
+        String second = "12";
+        String[] results = {"1XY2", "Y1X2", "Y21XX"};
+        
+        first = convertToCharArray(first);
+        second = convertToCharArray(second);
+        
+        for(int i=0;i<results.length;i++){
+            String item = results[i];
+            if(item.length() != (first.length()+second.length())){
+                System.out.println("\nit is not suffle");       
+            }else{
+                item = convertToCharArray(item);
+                int flag = suffleCheck(item,first,second);
+                if(flag==-1){
+                    System.out.println("\nit is not suffle"); 
+                }else{
+                    System.out.println("\nit is suffle"); 
+                }
+            }
+        }
+        
+    }
+    public static int suffleCheck(String item,String first,String second){
+        int l=0;
+        int m=0;
+        for(int k=0;k<item.length();k++){
+            char temp = item.charAt(k);
+            if(l<first.length() && first.charAt(l)==temp){
+                l++;
+            }else{
+                if(m<second.length() && second.charAt(m)==temp){
+                    m++;
+                }else{
+                    return -1;
+                }
+            }
+        }
+        if(l<first.length() || m<second.length()){
+            return -1;
+        }
+        return 1;
+    }
+}
