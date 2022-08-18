@@ -1,0 +1,35 @@
+import java.util.*;
+
+class BucketSort {
+    
+    public static void bucketSort(double arr[],int n){
+        ArrayList<Double>[] bucket = new ArrayList[n];
+        for(int i=0;i<n;i++){
+            bucket[i]= new ArrayList<Double>();
+        }
+       for(int i=0;i<arr.length;i++){
+            int index = (int)arr[i]*10;
+            bucket[index].add(arr[i]);
+       }
+       for(int i=0;i<n;i++){
+           Collections.sort(bucket[i]);
+       }
+       int ind=0;
+       for(int i=0;i<n;i++){
+           for(int j=0;j<bucket[i].size();j++){
+               arr[ind++]=bucket[i].get(j);
+           }
+       }
+    }
+    
+    public static void main(String[] args) {
+        double arr[] = { 0.0897, 0.0565,
+                        0.656, 0.001234,
+                        0.765, 0.3434 };
+        int n = arr.length;
+        bucketSort(arr,10);
+        for (int i=0;i< n;i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
