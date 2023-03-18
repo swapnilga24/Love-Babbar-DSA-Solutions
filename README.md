@@ -1,3 +1,3 @@
-# lovebabbarDSA
+# love-babbar-DSA
 
-all array question.
+Solution for some dsa problem from Love-babbar sheet in java.
